@@ -20,13 +20,13 @@ class Settings:
         self.alien_ship_file = Path.cwd() / 'Assets' / 'images' / 'ship2(no bg).png'
         self.alien_ship_w = 40
         self.alien_ship_h = 60
-        self.alien_ship_speed = 5
+        self.alien_ship_speed = 4
 
         self.bullet_file = Path.cwd() / 'Assets' / 'images' / 'laserBlast.png'
         self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'laser.mp3'
-        self.bullet_speed = 7
-        self.bullet_w = 25
-        self.bullet_h = 80
-        self.bullet_amount = 10
+        self.bullet_speed = 10
+        self.bullet_w = 20
+        self.bullet_h = 75
+        self.bullet_amount = 15
 
         self.ship_side = "left"  
