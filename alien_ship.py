@@ -1,0 +1,76 @@
+"""
+Program Name: alien_ship.py
+
+Author: Shrrayash Srinivasan
+
+Purpose: Handles the alien ship initialization, movement, drawing, and firing processors for the Alien Invasion game.
+Integrates with the Arsenal class and ensures the ship faces the center of the screen.
+
+Date: November 16, 2025
+"""
+
+import pygame
+from typing import TYPE_CHECKING
+from arsenal import Arsenal 
+
+if TYPE_CHECKING:
+    from lab12_ssrinivasan3 import AlienInvasion
+
+class Ship:
+    def __init__(self, game: 'AlienInvasion', arsenal: 'Arsenal', side='left'):
+        self.game = game
+        self.settings = game.settings
+        self.screen = game.screen
+        self.boundaries = self.screen.get_rect()
+        self.side = side
+        self.arsenal = arsenal
+
+        # Load and scale ship image
+        self.image = pygame.image.load(self.settings.alien_ship_file)
+        self.image = pygame.transform.scale(
+            self.image, (self.settings.alien_ship_w, self.settings.alien_ship_h)
+        )
+
+        # Orientation: face the center of the screen
+        if side == "left":
+            # Ship on left edge should face right
+            self.image = pygame.transform.rotate(self.image, -90)
+            self.rect = self.image.get_rect()
+            self.rect.left = 0
+        elif side == "right":
+            # Ship on right edge should face left
+            self.image = pygame.transform.rotate(self.image, 90)
+            self.rect = self.image.get_rect()
+            self.rect.right = self.boundaries.right
+
+        # Vertically centered
+        self.rect.centery = self.boundaries.centery
+
+        # Movement flags
+        self.moving_up = False
+        self.moving_down = False
+
+        # Position tracking
+        self.y = float(self.rect.y)
+
+    def update(self):
+        self._update_ship_movement()
+        self.arsenal.update_arsenal()
+
+    def _update_ship_movement(self):
+        temp_speed = self.settings.alien_ship_speed
+
+        if self.moving_up and self.rect.top > self.boundaries.top:
+            self.y -= temp_speed
+        if self.moving_down and self.rect.bottom < self.boundaries.bottom:
+            self.y += temp_speed
+
+        self.rect.y = self.y
+
+    def draw(self):
+        self.arsenal.draw()
+        self.screen.blit(self.image, self.rect)
+
+    def fire(self):
+        return self.arsenal.fire_bullet(self.rect.center, self.side)
+
