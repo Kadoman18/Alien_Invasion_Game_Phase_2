@@ -25,32 +25,25 @@ class Ship:
         self.side = side
         self.arsenal = arsenal
 
-        # Load and scale ship image
         self.image = pygame.image.load(self.settings.alien_ship_file)
         self.image = pygame.transform.scale(
             self.image, (self.settings.alien_ship_w, self.settings.alien_ship_h)
         )
 
-        # Orientation: face the center of the screen
         if side == "left":
-            # Ship on left edge should face right
             self.image = pygame.transform.rotate(self.image, -90)
             self.rect = self.image.get_rect()
             self.rect.left = 0
         elif side == "right":
-            # Ship on right edge should face left
             self.image = pygame.transform.rotate(self.image, 90)
             self.rect = self.image.get_rect()
             self.rect.right = self.boundaries.right
 
-        # Vertically centered
         self.rect.centery = self.boundaries.centery
 
-        # Movement flags
         self.moving_up = False
         self.moving_down = False
 
-        # Position tracking
         self.y = float(self.rect.y)
 
     def update(self):
