@@ -6,7 +6,7 @@ Author: Shrrayash Srinivasan
 Purpose: Handles the alien ship initialization, movement, drawing, and firing processors for the Alien Invasion game.
 Integrates with the Arsenal class and ensures the ship faces the center of the screen.
 
-Date: November 16, 2025
+Date: November 21, 2025
 """
 
 import pygame
