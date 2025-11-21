@@ -3,7 +3,7 @@ Program Name: alien_fleet.py
 
 Author: Shrrayash Srinivasan
 
-Purpose: Handles the alien fleet movement and whatnot. Enjoy!
+Purpose: Handles the alien fleet movement when the hit boundaries and when they need to move as they hit boundaries.
 
 Date: November 21, 2025
 """
