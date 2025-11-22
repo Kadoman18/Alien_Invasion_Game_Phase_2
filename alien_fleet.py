@@ -73,8 +73,8 @@ class AlienFleet:
          
          return int(fleet_w), int(fleet_h)
      
-     def _create_alien(self, current_x: int, current_y: int):
-          new_alien = Alien(self, current_x, current_y)
+     def _create_alien(self, current_y: int, current_x: int):
+          new_alien = Alien(self, current_y, current_x)
 
           self.fleet.add(new_alien)
 
@@ -89,7 +89,7 @@ class AlienFleet:
      
      def _drop_alien_fleet(self):
           for alien in self.fleet:
-              alien.x += self.fleet_drop_speed
+              alien.y += self.fleet_drop_speed
 
      def update_fleet(self):
           self._check_fleet_edges()
