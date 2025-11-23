@@ -15,12 +15,13 @@ if TYPE_CHECKING:
      from alien_fleet import AlienFleet
 
 class Alien(Sprite):
-     def __init__(self, fleet: 'AlienFleet', y: float, x: float):
+     def __init__(self, fleet: 'AlienFleet', y: float, x: float, side='right'):
           super().__init__()
           self.fleet = fleet
           self.screen = fleet.game.screen
           self.boundaries = fleet.game.screen.get_rect()
           self.settings = fleet.game.settings
+          self.side = side
 
           self.image = pygame.image.load(self.settings.alien_file)
           self.image = pygame.transform.scale(
@@ -36,15 +37,14 @@ class Alien(Sprite):
           self.x = float(self.rect.x)
 
      def update(self):
-        temp_speed = self.settings.fleet_speed
-
-             
-        self.x += temp_speed * self.fleet.fleet_direction
+        vertical_speed = self.settings.fleet_speed         
+        self.y += vertical_speed * self.fleet.fleet_direction
         self.rect.y = self.y
         self.rect.x = self.x
      
      def check_edges(self):
          return (self.rect.bottom >= self.boundaries.bottom or self.rect.top <= self.boundaries.top) 
+
 
      def draw_alien(self):
           self.screen.blit(self.image, self.rect)

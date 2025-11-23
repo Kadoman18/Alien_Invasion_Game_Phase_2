@@ -83,12 +83,13 @@ class AlienFleet:
           alien: Alien
           for alien in self.fleet:
                if alien.check_edges():
-                    self._drop_alien_fleet()
+                    self._shift_fleet_right()
                     self.fleet_direction *= -1
                     break
      
-     def _drop_alien_fleet(self):
+     def _shift_fleet_right(self):
           for alien in self.fleet:
+              alien.rect.x += self.fleet_drop_speed
               alien.x += self.fleet_drop_speed
 
      def update_fleet(self):
@@ -104,7 +105,7 @@ class AlienFleet:
           return pygame.sprite.groupcollide(self.fleet, other_group, True, True)
      
 
-     def check_fleet_bottom(self):
+     def check_fleet_right(self):
           alien: Alien
           for alien in self.fleet:
                if alien.rect.right >= self.settings.screen_w:

@@ -68,7 +68,7 @@ class AlienInvasion:
         if self.hero_ship.check_collisions(self.alien_fleet.fleet):
             self._check_game_status()
 
-        if self.alien_fleet.check_fleet_bottom():
+        if self.alien_fleet.check_fleet_right():
             self._check_game_status()
 
 
@@ -96,19 +96,14 @@ class AlienInvasion:
         self.hero_ship.arsenal.arsenal.empty()
         self.alien_fleet.fleet.empty()
         self.alien_fleet.create_fleet()
+        pygame.display.flip()
 
     def _update_screen(self):
         self.screen.blit(self.bg, (0, 0))
         self.hero_ship.draw()
         self.alien_fleet.draw()
         pygame.display.flip()
-
-
-    def _reset_level(self):
-        self.hero_ship.arsenal.arsenal.empty()
-        self.alien_fleet.fleet.empty()
-        self.alien_fleet.create_fleet()        
-        pygame.display.flip()
+      
 
     def _check_events(self):
         for event in pygame.event.get():
