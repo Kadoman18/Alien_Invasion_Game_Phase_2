@@ -22,6 +22,7 @@ class AlienFleet:
           self.fleet = pygame.sprite.Group()
           self.fleet_direction = self.settings.fleet_direction
           self.fleet_drop_speed = self.settings.fleet_drop_speed
+          self.fleet_speed = self.settings.fleet_speed
 
           self.create_fleet()
     
@@ -56,8 +57,8 @@ class AlienFleet:
          return x_offset,y_offset
 
      def calculate_fleet_size(self, alien_w, screen_w, alien_h, screen_h):
-         fleet_w = (screen_w//alien_w)
-         fleet_h = ((screen_h/2)//alien_h)
+         fleet_w = (screen_w//alien_w) - 1
+         fleet_h = ((screen_h/2)//alien_h) + 1
 
          if fleet_w % 2 == 0:
               fleet_w -=1
@@ -89,8 +90,8 @@ class AlienFleet:
      
      def _shift_fleet_right(self):
           for alien in self.fleet:
-              alien.rect.x += self.fleet_drop_speed
-              alien.x += self.fleet_drop_speed
+              alien.rect.x += self.fleet_speed
+              alien.x += self.fleet_speed
 
      def update_fleet(self):
           self._check_fleet_edges()

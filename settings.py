@@ -46,11 +46,10 @@ class Settings:
         '''Alien fleet settings'''
         
         self.alien_file = Path.cwd() / 'Assets' /  'images'   / 'enemy_4.png'
-        self.fleet_speed = 1
+        self.fleet_speed = 0.9
         self.alien_w = 40
         self.alien_h = 40
         self.fleet_direction = 1
-        self.alien_vertical_speed = 1
         self.fleet_drop_speed = 1
         self.alien_side = "right"
 

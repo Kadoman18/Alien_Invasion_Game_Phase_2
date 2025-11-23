@@ -23,7 +23,6 @@ class AlienInvasion:
     def __init__(self):
         pygame.init()
         self.settings = Settings()
-
         self.game_stats = GameStats(self.settings.starting_hero_ship_count)
 
 
@@ -61,6 +60,7 @@ class AlienInvasion:
                self.hero_ship.update()
                self.alien_fleet.update_fleet()
                self._check_collisions()
+               self._check_events()
             self._update_screen()
             self.clock.tick(self.settings.FPS)
 
@@ -71,23 +71,26 @@ class AlienInvasion:
         if self.alien_fleet.check_fleet_right():
             self._check_game_status()
 
-
         collisions = self.alien_fleet.check_collisions(self.hero_ship.arsenal.arsenal)
         if collisions:
             self.impact_sound.play()
             self.impact_sound.fadeout(1000)
-        
+
         if self.alien_fleet.check_destroyed_status():
             self._reset_level()
             sleep(1.5)
+
+        
 
     def _check_game_status(self):
         if self.game_stats.hero_ships_left > 0: 
             self.game_stats.hero_ships_left -= 1
             self._reset_level()
 
-            print(self.game_stats.hero_ships_left)
-        
+            print(self.game_stats.hero_ships_left) 
+
+
+    
         else:
           self.game_active = False
     
@@ -96,7 +99,6 @@ class AlienInvasion:
         self.hero_ship.arsenal.arsenal.empty()
         self.alien_fleet.fleet.empty()
         self.alien_fleet.create_fleet()
-        pygame.display.flip()
 
     def _update_screen(self):
         self.screen.blit(self.bg, (0, 0))
@@ -119,6 +121,7 @@ class AlienInvasion:
     def _check_keyup_events(self, event): 
         if event.key == pygame.K_KP_8:
             self.hero_ship.moving_up = False
+            
         elif event.key == pygame.K_KP_2:
             self.hero_ship.moving_down = False
 
