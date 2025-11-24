@@ -32,13 +32,13 @@ class Settings:
         '''Bullet class settings'''
 
 
-        self.bullet_file = Path.cwd() / 'Assets' / 'images' / 'laserBlast.png'
+        self.bullet_file = Path.cwd() / 'Assets' / 'images' / 'greenlaser.png'
         self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'laser.mp3'
         self.impact = Path.cwd() / 'Assets' / 'sound' / 'impactSound.mp3'
         self.bullet_speed = 10
         self.bullet_w = 20
         self.bullet_h = 75
-        self.bullet_amount = 15
+        self.bullet_amount = 30
 
         self.ship_side = "left"  
 
