@@ -77,19 +77,16 @@ class AlienInvasion:
         fired by the hero ship."""
 
         if self.hero_ship.check_collisions(self.alien_fleet.fleet):
-            self._check_game_status()
-            if self.game_active:
-                self._reset_level()
+           self._check_game_status() 
 
         if self.alien_fleet.check_fleet_right():
             self._check_game_status()
-            if self.game_active:
-                self._reset_level()
+
 
         collisions = self.alien_fleet.check_collisions(self.hero_ship.arsenal.arsenal)
         if collisions:
-            self.impact_sound.play()
-            self.impact_sound.fadeout(1000)
+           self.impact_sound.play()
+           self.impact_sound.fadeout(1000)
 
         if self.alien_fleet.check_destroyed_status():
             self._reset_level()
@@ -104,7 +101,7 @@ class AlienInvasion:
             self.game_stats.hero_ships_left -= 1
             self._reset_level()
 
-            print(self.game_stats.hero_ships_left) 
+            print("Lives left:", self.game_stats.hero_ships_left) 
 
 
     
@@ -163,3 +160,5 @@ class AlienInvasion:
 if __name__ == '__main__':
     ai = AlienInvasion()
     ai.run_game()
+        
+

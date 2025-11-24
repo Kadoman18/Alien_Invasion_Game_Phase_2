@@ -80,7 +80,7 @@ class AlienFleet:
          return int(fleet_w), int(fleet_h)
      
      def _create_alien(self, current_y: int, current_x: int):
-          new_alien = Alien(self, current_y, current_x)
+          new_alien = Alien(self, current_y, current_x, side='right')
 
           self.fleet.add(new_alien)
 
