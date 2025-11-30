@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from lab12_ssrinivasan3 import AlienInvasion
 
 class Button:
+    """ This class will manage the button for the Alien Invasion game."""
 
     def __init__(self, game: 'AlienInvasion', msg):
         self.game = game
@@ -27,6 +28,8 @@ class Button:
         self.rect.center = self.boundaries.center
         self._prep_msg(msg)
     
+    """Render message text"""
+    
     def _prep_msg(self, msg):
         self.msg_image = self.font.render(msg, True, self.settings.text_color, None) 
         self.msg_image_rect = self.msg_image.get_rect()
@@ -34,10 +37,16 @@ class Button:
     
 
     def draw(self):
+
+        """ Draws the button to the screen."""
+
+
         self.screen.fill(self.settings.button_color, self.rect)
         self.screen.blit(self.msg_image, self.msg_image_rect)
     
     def check_clicked(self, mouse_pos):
+
+        """ Returns True if the button is clicked, else False."""
         return self.rect.collidepoint(mouse_pos)
 
     
