@@ -3,10 +3,10 @@ Program Name: Lab12_ssrinivasan3_#1.py
 
 Author: Shrrayash Srinivasan
 
-Purpose: This serves as the main module for the game Alien Invasion. It has all the necessary functions from the other files to 
-ensure the game is operational tumez! 
+Purpose: This serves as the main module for the game Alien Invasion. It has all the necessary functions from the other files to
+ensure the game is operational tumez!
 
-Date: November 21, 2025 
+Date: November 21, 2025
 """
 
 import sys
@@ -14,20 +14,20 @@ import pygame
 from settings import Settings
 from hero_ship import Ship
 from game_stats import GameStats
-from arsenal import Arsenal 
+from arsenal import Arsenal
 from alien_fleet import AlienFleet
 from time import sleep
 from button import Button
-from hud import HUD  
+from hud import HUD
 
 class AlienInvasion:
     """Main control class that manages the Alien Invasion game."""
-    
+
     def __init__(self):
         """Initializes game resources, settings, and the needed objects."""
         pygame.init()
         self.settings = Settings()
-        self.settings.initialize_dynamic_settings() 
+        self.settings.initialize_dynamic_settings()
         self.game_stats = GameStats(self)
 
         self.screen = pygame.display.set_mode(
@@ -55,7 +55,7 @@ class AlienInvasion:
         self.alien_fleet.create_fleet()
 
         self.play_button = Button(self, "Play")
-        self.HUD = HUD(self)  
+        self.HUD = HUD(self)
         self.game_active = False
 
     def run_game(self):
@@ -122,7 +122,7 @@ class AlienInvasion:
         self.screen.blit(self.bg, (0, 0))
         self.hero_ship.draw()
         self.alien_fleet.draw()
-        self.HUD.draw()  
+        self.HUD.draw()
 
         if not self.game_active:
             self.play_button.draw()
@@ -176,8 +176,8 @@ class AlienInvasion:
 if __name__ == '__main__':
     ai = AlienInvasion()
     ai.run_game()
- 
-        
+
+
 
 
 

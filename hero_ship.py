@@ -11,7 +11,7 @@ Date: November 21, 2025
 
 import pygame
 from typing import TYPE_CHECKING
-from arsenal import Arsenal 
+from arsenal import Arsenal
 
 if TYPE_CHECKING:
     from lab12_ssrinivasan3 import AlienInvasion
@@ -71,7 +71,7 @@ class Ship:
 
     def fire(self):
         return self.arsenal.fire_bullet(self.rect.center, self.side)
-    
+
     def check_collisions(self, other_group):
         if pygame.sprite.spritecollideany(self, other_group):
             self._center_ship()
@@ -89,6 +89,6 @@ class Ship:
         elif self.side == "right":
             self.rect.right = self.boundaries.right
 
-        
+
 
 
