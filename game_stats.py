@@ -115,3 +115,4 @@ class GameStats:
         """
         self.level += 1
         print("LEVEL:", self.level)
+
