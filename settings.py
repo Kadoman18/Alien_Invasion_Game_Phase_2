@@ -84,7 +84,7 @@ class Settings:
 
         self.fleet_speed = 0.5
         self.fleet_drop_speed = 2
-        self.fleet_drop_speed = 25   
+        self.fleet_drop_speed = 25
         self.alien_points = 50
 
     def increase_difficulty(self):
@@ -96,6 +96,13 @@ class Settings:
         self.fleet_speed *= self.difficulty_scale
         self.bullet_speed *= self.difficulty_scale
         self.hero_ship_speed *= self.difficulty_scale
+
+
+
+
+
+
+
 
 
 

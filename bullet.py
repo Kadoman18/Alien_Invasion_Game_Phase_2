@@ -1,58 +1,54 @@
 """
-Program Name: bullet.py
+Program Name: button.py
 
 Author: Shrrayash Srinivasan
 
-Purpose: Defined the Bullet class with the use of the Sprite system. It is an important part of the alien ship firing mechanism and
-the bullets fire out of the ship and the code is done specifically to track the movement and speed of the lasers.
+Purpose: Button. This will initialize the button class for the Alien Invasion game which will be used to start the game.
 
-Date: November 16, 2025
+Date: November 28, 2025
 """
+import pygame.font
+from typing import TYPE_CHECKING
 
-import pygame
-from pygame.sprite import Sprite
-from typing import TYPE_CHECKING 
 
 if TYPE_CHECKING:
     from lab12_ssrinivasan3 import AlienInvasion
 
-class Bullet(Sprite):
-    """Bullet class to manage bullets fired by the player's ship."""
-    def __init__(self, game: 'AlienInvasion', position, direction):
-        super().__init__()
+class Button:
+    """ This class will manage the button for the Alien Invasion game."""
+
+    def __init__(self, game: 'AlienInvasion', msg):
+        self.game = game
         self.screen = game.screen
+        self.boundaries = game.screen.get_rect()
         self.settings = game.settings
+        self.font = pygame.font.Font(self.settings.font_file,
+                    self.settings.button_font_size)
+        self.rect = pygame.Rect(0, 0, self.settings.button_w, self.settings.button_h)
+        self.rect.center = self.boundaries.center
+        self._prep_msg(msg)
 
-        self.image = pygame.image.load(self.settings.bullet_file)
-        self.image = pygame.transform.scale(
-            self.image,
-            (self.settings.bullet_w, self.settings.bullet_h)
-        )
+    """Render message text"""
 
-        if direction == 1:   
-            self.image = pygame.transform.rotate(self.image, -90)
-        else:      
-            self.image = pygame.transform.rotate(self.image, 90)
+    def _prep_msg(self, msg):
+        self.msg_image = self.font.render(msg, True, self.settings.text_color, None)
+        self.msg_image_rect = self.msg_image.get_rect()
+        self.msg_image_rect.center = self.rect.center
 
-        self.rect = self.image.get_rect(center=position)
-        if direction == 1:
-            self.rect.left = position[0] 
-        else:
-            self.rect.right = position[0]
 
-        self.x = float(self.rect.x)
+    def draw(self):
 
-        self.direction = direction
-        self.speed = self.settings.bullet_speed
+        """ Draws the button to the screen."""
 
-    def update(self):
-        """Directly update the bullet's position based on its speed and direction."""
-        self.x += self.speed * self.direction
-        self.rect.x = self.x
 
-    def draw_bullet(self):
-        """Draw the bullet to the screen."""
-        self.screen.blit(self.image, self.rect)
+        self.screen.fill(self.settings.button_color, self.rect)
+        self.screen.blit(self.msg_image, self.msg_image_rect)
+
+    def check_clicked(self, mouse_pos):
+
+        """ Returns True if the button is clicked, else False."""
+        return self.rect.collidepoint(mouse_pos)
+
 
 
 
